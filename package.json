@@ -1,0 +1,15 @@
+{
+  "name": "tarmac-car-rental",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Car rental landing page with booking API",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test test/api.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

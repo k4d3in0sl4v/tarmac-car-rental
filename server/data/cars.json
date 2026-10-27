@@ -1,0 +1,72 @@
+[
+  {
+    "id": "economy",
+    "name": "Economy",
+    "example": "Hyundai i30 or similar",
+    "image": "img/car-1.webp",
+    "seats": 4,
+    "suitcases": 2,
+    "doors": 5,
+    "transmission": ["automatic", "manual"],
+    "airConditioning": true,
+    "pricePerDay": 39,
+    "units": 6,
+    "description": "Popular with budget travelers on short trips. Cheap to rent, easy to park and light on fuel."
+  },
+  {
+    "id": "luxury",
+    "name": "Luxury",
+    "example": "Toyota GR86 or similar",
+    "image": "img/car-2.webp",
+    "seats": 5,
+    "suitcases": 2,
+    "doors": 2,
+    "transmission": ["automatic"],
+    "airConditioning": true,
+    "pricePerDay": 129,
+    "units": 2,
+    "description": "For business trips, anniversaries and other occasions when comfort and style matter as much as getting there."
+  },
+  {
+    "id": "convertible",
+    "name": "Convertible",
+    "example": "Audi A5 Cabriolet or similar",
+    "image": "img/car-3.webp",
+    "seats": 4,
+    "suitcases": 2,
+    "doors": 2,
+    "transmission": ["automatic"],
+    "airConditioning": true,
+    "pricePerDay": 89,
+    "units": 3,
+    "description": "Roof down on the Pacific Coast Highway or the Florida Keys. Best for two people with light luggage."
+  },
+  {
+    "id": "suv",
+    "name": "SUV",
+    "example": "Ford Edge or similar",
+    "image": "img/car-4.webp",
+    "seats": 5,
+    "suitcases": 3,
+    "doors": 4,
+    "transmission": ["automatic"],
+    "airConditioning": true,
+    "pricePerDay": 79,
+    "units": 4,
+    "description": "Room for the family and the camping gear. A safe pick for road trips to Disney World or the Grand Canyon."
+  },
+  {
+    "id": "van",
+    "name": "Van / Minivan",
+    "example": "Chrysler Pacifica or similar",
+    "image": "img/car-5.webp",
+    "seats": 8,
+    "suitcases": 5,
+    "doors": 5,
+    "transmission": ["automatic"],
+    "airConditioning": true,
+    "pricePerDay": 99,
+    "units": 3,
+    "description": "Legroom and luggage space no other class offers. 7- and 8-seat minivans, larger passenger vans on request."
+  }
+]

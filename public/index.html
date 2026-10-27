@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarmac Car Rental — cars at 7 US airports</title>
+    <meta name="description" content="Rent economy, luxury, convertible, SUV and minivan cars at 7 US airports. Free cancellation, no hidden charges, 24/7 support.">
+    <meta name="theme-color" content="#3151aa">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tarmac Car Rental">
+    <meta property="og:description" content="Your contract is ready before you land. Rent a car at 7 US airports.">
+    <meta property="og:image" content="img/car-1.webp">
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preload" as="image" href="img/car-1.webp">
+    <script src="js/app.js" defer></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoRental",
+        "name": "Tarmac Car Rental",
+        "telephone": "+1-234-567-8908",
+        "openingHours": "Mo-Su 00:00-23:59",
+        "areaServed": "US"
+    }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap site-header__inner">
+            <a class="logo" href="#top" aria-label="Tarmac Car Rental, back to top">
+                <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+                    <path d="M6 4h28l2 6c0 14-6 22-16 26C10 32 4 24 4 10z" fill="#3151aa" />
+                    <path d="M12 12.5h16M20 12.5V28" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" />
+                </svg>
+                <span class="logo__word">tarmac<small>car rental</small></span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span class="nav-toggle__bars" aria-hidden="true"></span>
+                <span class="sr-only">Menu</span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <ul>
+                    <li><a href="#fleet">Cars</a></li>
+                    <li><a href="#how">How it works</a></li>
+                    <li><a href="#faq">Questions</a></li>
+                    <li><button type="button" class="link-button" data-open="manage">Manage booking</button></li>
+                </ul>
+                <a class="phone-pill" href="tel:+12345678908">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone" /></svg>
+                    +1 234 567 8908
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- HERO: headline, trip search, and the car line-up on the road -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="wrap hero__inner">
+                <div class="hero__copy">
+                    <h1 id="hero-title">Your contract is ready before you land.</h1>
+                    <p class="hero__lead">Rent a car at 7 US airports. Book online in two minutes, show your license at the desk and drive off.</p>
+                </div>
+
+                <form class="search" id="search-form" novalidate>
+                    <div class="field field--wide">
+                        <label for="s-location">Pick-up airport</label>
+                        <select id="s-location" name="locationId" required>
+                            <option value="LAX">Los Angeles (LAX)</option>
+                            <option value="SFO">San Francisco (SFO)</option>
+                            <option value="LAS">Las Vegas (LAS)</option>
+                            <option value="JFK">New York (JFK)</option>
+                            <option value="ORD">Chicago (ORD)</option>
+                            <option value="MCO">Orlando (MCO)</option>
+                            <option value="MIA">Miami (MIA)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="s-pickup">Pick-up date</label>
+                        <input id="s-pickup" name="pickupDate" type="date" required>
+                    </div>
+                    <div class="field">
+                        <label for="s-return">Return date</label>
+                        <input id="s-return" name="returnDate" type="date" required>
+                    </div>
+                    <div class="field">
+                        <label for="s-class">Car class</label>
+                        <select id="s-class" name="carId">
+                            <option value="">Any class</option>
+                            <option value="economy">Economy</option>
+                            <option value="luxury">Luxury</option>
+                            <option value="convertible">Convertible</option>
+                            <option value="suv">SUV</option>
+                            <option value="van">Van / Minivan</option>
+                        </select>
+                    </div>
+                    <button class="btn btn--primary search__submit" type="submit">Show prices</button>
+                    <p class="search__error" role="alert" hidden></p>
+                </form>
+
+                <ul class="guarantees">
+                    <li><img src="img/icon-free.png" alt="" width="40" height="40">Free cancellation up to 24 hours before pick-up</li>
+                    <li><img src="img/icon-coin.png" alt="" width="40" height="40">No hidden charges: taxes and fees included</li>
+                    <li><img src="img/icon-24.png" alt="" width="40" height="40">Customer support 24/7, by phone</li>
+                </ul>
+            </div>
+
+            <div class="road">
+                <div class="road__lineup" id="lineup" role="group" aria-label="Pick a car class">
+                    <!-- filled by app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- The three original promise panels -->
+        <section class="pillars" aria-label="Why rent with us">
+            <article class="pillar pillar--blue">
+                <img src="img/icon-card.png" alt="" width="64" height="64">
+                <h2>Faster pick-up</h2>
+                <p>We prepare your contract as soon as you book. At the desk you only sign.</p>
+            </article>
+            <article class="pillar pillar--olive">
+                <img src="img/icon-car.png" alt="" width="64" height="64">
+                <h2>70 years on the road</h2>
+                <p>Over seven decades of renting cars to travelers across the United States.</p>
+            </article>
+            <article class="pillar pillar--rose">
+                <img src="img/icon-key.png" alt="" width="64" height="64">
+                <h2>Better service</h2>
+                <p>We know you better, we serve you better. Your next rental remembers your extras.</p>
+            </article>
+        </section>
+
+        <!-- FLEET -->
+        <section class="fleet" id="fleet" aria-labelledby="fleet-title">
+            <div class="wrap">
+                <div class="fleet__head">
+                    <h2 id="fleet-title">Car and van rentals from top suppliers</h2>
+                    <p>Our suppliers offer both automatic and manual cars in the US. Availability depends on the supplier and the airport you rent from.</p>
+                </div>
+
+                <div class="fleet__tools">
+                    <div class="chips" role="group" aria-label="Filter by class" id="class-chips">
+                        <button type="button" class="chip" aria-pressed="true" data-class="">All classes</button>
+                        <button type="button" class="chip" aria-pressed="false" data-class="economy">Economy</button>
+                        <button type="button" class="chip" aria-pressed="false" data-class="luxury">Luxury</button>
+                        <button type="button" class="chip" aria-pressed="false" data-class="convertible">Convertible</button>
+                        <button type="button" class="chip" aria-pressed="false" data-class="suv">SUV</button>
+                        <button type="button" class="chip" aria-pressed="false" data-class="van">Van / Minivan</button>
+                    </div>
+                    <div class="fleet__selects">
+                        <label class="inline-select">Seats
+                            <select id="f-seats">
+                                <option value="0">Any</option>
+                                <option value="5">5 or more</option>
+                                <option value="7">7 or more</option>
+                            </select>
+                        </label>
+                        <label class="inline-select">Sort
+                            <select id="f-sort">
+                                <option value="price">Lowest price</option>
+                                <option value="seats">Most seats</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <p class="fleet__status" id="fleet-status" aria-live="polite">Pick dates above to see the total for your trip.</p>
+
+                <div class="car-list" id="car-list">
+                    <noscript>
+                        <p class="empty">Turn on JavaScript to see prices, or call us at <a href="tel:+12345678908">+1 234 567 8908</a> to book.</p>
+                    </noscript>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS (a real sequence, so it is numbered) -->
+        <section class="how" id="how" aria-labelledby="how-title">
+            <div class="wrap">
+                <h2 id="how-title">From booking to driving off</h2>
+                <ol class="steps">
+                    <li>
+                        <h3>Choose dates and a car</h3>
+                        <p>The price you see includes taxes and airport fees. What you see is what you pay.</p>
+                    </li>
+                    <li>
+                        <h3>Get your booking reference</h3>
+                        <p>Your contract is prepared right away. Cancel free of charge until 24 hours before pick-up.</p>
+                    </li>
+                    <li>
+                        <h3>Pick up at the airport</h3>
+                        <p>Show your driver’s license and a credit card in the driver’s name. Sign, take the keys, go.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- CALL BAND (original "book by phone" section + callback form) -->
+        <section class="call" id="call" aria-labelledby="call-title">
+            <div class="wrap call__inner">
+                <div class="call__copy">
+                    <h2 id="call-title">Book a car rental near you by giving us a call</h2>
+                    <a class="call__number" href="tel:+12345678908">+1 234 567 8908</a>
+                    <p>Day and night, every day of the year.</p>
+                </div>
+
+                <form class="callback" id="callback-form" novalidate>
+                    <h3>Or leave your number and we’ll call you</h3>
+                    <div class="field">
+                        <label for="c-name">Your name</label>
+                        <input id="c-name" name="name" autocomplete="name" required>
+                        <p class="field__error" id="c-name-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="c-phone">Phone, with country code</label>
+                        <input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 234 567 8908" required>
+                        <p class="field__error" id="c-phone-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="c-time">When to call</label>
+                        <select id="c-time" name="preferredTime">
+                            <option>Any time</option>
+                            <option>Morning</option>
+                            <option>Afternoon</option>
+                            <option>Evening</option>
+                        </select>
+                    </div>
+                    <div class="hp" aria-hidden="true">
+                        <label for="c-website">Website</label>
+                        <input id="c-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <button class="btn btn--light" type="submit">Call me back</button>
+                    <p class="form-status" role="status"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+            <div class="wrap faq__inner">
+                <h2 id="faq-title">Questions before you book</h2>
+                <div class="faq__list">
+                    <details>
+                        <summary>What do I need to pick up the car?</summary>
+                        <p>A driver’s license you have held for at least a year and a credit card in the main driver’s name. Visitors from abroad also need a passport, and an International Driving Permit if the license is not in English.</p>
+                    </details>
+                    <details>
+                        <summary>How old do I need to be?</summary>
+                        <p>The main driver must be 21 or older. Additional drivers have to meet the same rules and be present at pick-up.</p>
+                    </details>
+                    <details>
+                        <summary>How do I cancel?</summary>
+                        <p>Open <button type="button" class="link-button" data-open="manage">Manage booking</button>, enter your reference and email, and cancel. It’s free until 24 hours before pick-up.</p>
+                    </details>
+                    <details>
+                        <summary>Is there a deposit?</summary>
+                        <p>A refundable hold is placed on your credit card at pick-up and released after you return the car undamaged and with a full tank.</p>
+                    </details>
+                    <details>
+                        <summary>Automatic or manual?</summary>
+                        <p>Most cars in the US are automatic. Economy cars with a manual gearbox are available at some airports. Write your preference in the booking comment.</p>
+                    </details>
+                    <details>
+                        <summary>Can I return the car at a different airport?</summary>
+                        <p>Yes, one-way rentals are possible between most of our airports. Call us to arrange one, since the price depends on the route.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="site-footer__deal">
+                <h2>Best valued deals from top car rental companies in the USA</h2>
+                <p>In the USA we work with Sixt, Alamo, Europcar, Fox, Dollar, National, Hertz, Advantage and many others.</p>
+                <a class="btn btn--light" href="#top">Find a car</a>
+            </div>
+            <div class="site-footer__bottom">
+                <nav aria-label="Footer">
+                    <a href="#fleet">Cars</a>
+                    <a href="#how">How it works</a>
+                    <a href="#faq">Questions</a>
+                    <button type="button" class="link-button" data-open="manage">Manage booking</button>
+                </nav>
+                <p>© <span id="year">2026</span> Tarmac Car Rental</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOKING DIALOG -->
+    <dialog class="dialog" id="booking-dialog" aria-labelledby="bk-title">
+        <div class="dialog__frame">
+            <button class="dialog__close" type="button" data-close aria-label="Close">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close" /></svg>
+            </button>
+
+            <form id="booking-form" class="booking" novalidate>
+                <header class="booking__head">
+                    <img id="bk-image" src="img/car-1.webp" alt="" width="240" height="93">
+                    <div>
+                        <h2 id="bk-title">Book Economy</h2>
+                        <p id="bk-example">Hyundai i30 or similar</p>
+                    </div>
+                </header>
+
+                <fieldset>
+                    <legend>Trip</legend>
+                    <div class="grid-2">
+                        <div class="field field--span">
+                            <label for="b-location">Pick-up airport</label>
+                            <select id="b-location" name="locationId"></select>
+                            <p class="field__error" id="b-locationId-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="b-pickup">Pick-up date</label>
+                            <input id="b-pickup" name="pickupDate" type="date" required>
+                            <p class="field__error" id="b-pickupDate-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="b-time">Pick-up time</label>
+                            <select id="b-time" name="pickupTime"></select>
+                        </div>
+                        <div class="field">
+                            <label for="b-return">Return date</label>
+                            <input id="b-return" name="returnDate" type="date" required>
+                            <p class="field__error" id="b-returnDate-error"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Extras</legend>
+                    <div class="extras" id="b-extras"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Main driver</legend>
+                    <div class="grid-2">
+                        <div class="field field--span">
+                            <label for="b-name">Full name, as on the license</label>
+                            <input id="b-name" name="fullName" autocomplete="name" required>
+                            <p class="field__error" id="b-fullName-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="b-email">Email</label>
+                            <input id="b-email" name="email" type="email" autocomplete="email" required>
+                            <p class="field__error" id="b-email-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="b-phone">Phone, with country code</label>
+                            <input id="b-phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 234 567 8908" required>
+                            <p class="field__error" id="b-phone-error"></p>
+                        </div>
+                        <div class="field field--span">
+                            <label for="b-notes">Flight number or comment <span class="optional">(optional)</span></label>
+                            <input id="b-notes" name="notes" maxlength="500" placeholder="e.g. UA 1234, we’ll wait if it’s late">
+                        </div>
+                        <label class="check field--span">
+                            <input type="checkbox" name="driverAge21" id="b-age">
+                            <span>The main driver is 21 or older</span>
+                        </label>
+                        <p class="field__error field--span" id="b-driverAge21-error"></p>
+                    </div>
+                    <div class="hp" aria-hidden="true">
+                        <label for="b-website">Website</label>
+                        <input id="b-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                </fieldset>
+
+                <section class="summary" aria-label="Price">
+                    <ul class="summary__lines" id="bk-lines"></ul>
+                    <p class="summary__total"><span>Total</span><strong id="bk-total">$0</strong></p>
+                    <p class="summary__note" id="bk-note">Pay at pick-up. Free cancellation until 24 hours before.</p>
+                </section>
+
+                <p class="form-error" id="bk-error" role="alert" hidden></p>
+                <button class="btn btn--primary btn--block" type="submit" id="bk-submit">Book Economy</button>
+            </form>
+
+            <div class="confirm" id="booking-done" hidden tabindex="-1">
+                <svg class="confirm__mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" /><path d="m14 25 7 7 13-15" /></svg>
+                <h2>Booked</h2>
+                <p>Your reference</p>
+                <p class="confirm__ref" id="done-ref">TM-XXXXXX</p>
+                <dl class="confirm__facts" id="done-facts"></dl>
+                <p class="confirm__hint">Show this reference at the desk. Save it, along with your email, to manage or cancel the booking.</p>
+                <div class="confirm__actions">
+                    <button class="btn btn--primary" type="button" data-close>Done</button>
+                    <button class="btn btn--ghost" type="button" id="done-copy">Copy reference</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MANAGE BOOKING DIALOG -->
+    <dialog class="dialog dialog--narrow" id="manage-dialog" aria-labelledby="mg-title">
+        <div class="dialog__frame">
+            <button class="dialog__close" type="button" data-close aria-label="Close">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close" /></svg>
+            </button>
+            <h2 id="mg-title">Manage booking</h2>
+            <form id="manage-form" novalidate>
+                <div class="field">
+                    <label for="m-ref">Booking reference</label>
+                    <input id="m-ref" name="reference" placeholder="TM-XXXXXX" autocomplete="off" autocapitalize="characters" required>
+                </div>
+                <div class="field">
+                    <label for="m-email">Email used for booking</label>
+                    <input id="m-email" name="email" type="email" autocomplete="email" required>
+                </div>
+                <p class="form-error" id="mg-error" role="alert" hidden></p>
+                <button class="btn btn--primary btn--block" type="submit">Find booking</button>
+            </form>
+            <div class="manage-result" id="manage-result" hidden></div>
+        </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- icon sprite -->
+    <svg class="sprite" aria-hidden="true">
+        <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" /></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18" /></symbol>
+        <symbol id="i-seat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M7 3h4l1 9h6a2 2 0 0 1 2 2v2H8z M8 16v5 M18 16v5" /></symbol>
+        <symbol id="i-bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 7h14v13H5z M9 7V4h6v3 M9 11v5 M15 11v5" /></symbol>
+        <symbol id="i-door" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 12 11 4h9v16H4z M4 12h16 M15 15h2" /></symbol>
+        <symbol id="i-gear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 4v16 M12 4v16 M18 4v8 M6 12h12" /></symbol>
+        <symbol id="i-snow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 3v18 M4.2 7.5l15.6 9 M4.2 16.5l15.6-9 M9.5 4.5 12 6l2.5-1.5 M9.5 19.5 12 18l2.5 1.5" /></symbol>
+    </svg>
+</body>
+
+</html>
