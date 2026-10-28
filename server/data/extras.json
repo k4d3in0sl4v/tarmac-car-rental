@@ -1,6 +1,0 @@
-[
-  { "id": "insurance", "name": "Full coverage, no deductible", "pricePerDay": 19 },
-  { "id": "driver", "name": "Additional driver", "pricePerDay": 12 },
-  { "id": "childSeat", "name": "Child seat", "pricePerDay": 9 },
-  { "id": "gps", "name": "GPS navigator", "pricePerDay": 7 }
-]

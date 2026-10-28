@@ -1,9 +1,0 @@
-[
-  { "id": "LAX", "name": "Los Angeles International Airport (LAX)", "city": "Los Angeles, CA" },
-  { "id": "SFO", "name": "San Francisco International Airport (SFO)", "city": "San Francisco, CA" },
-  { "id": "LAS", "name": "Harry Reid International Airport (LAS)", "city": "Las Vegas, NV" },
-  { "id": "JFK", "name": "John F. Kennedy International Airport (JFK)", "city": "New York, NY" },
-  { "id": "ORD", "name": "O'Hare International Airport (ORD)", "city": "Chicago, IL" },
-  { "id": "MCO", "name": "Orlando International Airport (MCO)", "city": "Orlando, FL" },
-  { "id": "MIA", "name": "Miami International Airport (MIA)", "city": "Miami, FL" }
-]
