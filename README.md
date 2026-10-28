@@ -1,79 +1,74 @@
-# Tarmac Car Rental
+# Tarmac — car rental website (Next.js)
 
-Сайт прокату авто в аеропортах США, який я зробив від дизайну до бекенду. Відвідувач обирає аеропорт і дати, бачить ціни на всю поїздку, бронює машину онлайн і може сам скасувати бронювання. Для персоналу є окрема адмінка.
+A Next.js 15 (App Router, TypeScript) car rental site for travelers picking up cars at US airports. Visitors search by airport and dates, compare classes with live prices and availability, book online and manage or cancel their booking themselves. Staff work from a separate bookings desk.
 
-Фронтенд написаний на чистих HTML, CSS і JavaScript, бекенд — на Node.js **без жодної npm-залежності**.
+The back end lives in the same app as Next.js route handlers, so there is nothing else to deploy.
 
-## Можливості
-
-- **Пошук поїздки:** аеропорт, дати отримання й повернення, клас авто. На першому екрані — «дорога» з п’ятьма машинами, клік по машині одразу обирає клас.
-- **Список авто:** фільтри за класом і кількістю місць, сортування, ціна за день і за всю поїздку, наявність на обрані дати («залишилось 1»).
-- **Бронювання:** модальне вікно з датами, часом, додатковими опціями (страховка, другий водій, дитяче крісло, GPS), живим підрахунком суми, перевіркою полів і підтвердженням з номером бронювання `TM-XXXXXX`.
-- **Керування бронюванням:** пошук за номером і email, безкоштовне скасування до 24 годин перед отриманням.
-- **Зворотний дзвінок:** форма «передзвоніть мені» з вибором зручного часу.
-- **Адмінка:** список бронювань зі зміною статусу, пошук і фільтри, заявки на дзвінок, коротка статистика.
-- **Адаптивність:** від телефонів 320px до широких екранів, мобільне меню.
-- **Доступність і SEO:** семантична розмітка, видимий фокус для клавіатури, підтримка `prefers-reduced-motion`, meta-теги, Open Graph, розмітка schema.org `AutoRental`.
-
-## Дизайн
-
-Фірмові кольори — синій, оливковий і бордовий. Шрифт Overpass побудований на Highway Gothic — шрифті дорожніх знаків США, тож він підтримує тему сайту. Фото авто я обробив: прибрав білий фон і перевів у WebP, щоб машини стояли на будь-якому фоні й швидко завантажувались.
-
-## Запуск
-
-Потрібен лише Node.js 18+.
+## Run
 
 ```bash
-cp .env.example .env      # задайте свій ADMIN_TOKEN
-npm start                 # або: node server/index.js
+npm install
+cp .env.example .env.local   # set ADMIN_TOKEN
+npm run dev
 ```
 
-- Сайт: http://localhost:3000
-- Адмінка: http://localhost:3000/admin (вхід за `ADMIN_TOKEN`)
-- Тести API: `npm test`
-- Режим розробки з автоперезапуском: `npm run dev`
+Open http://localhost:3000. The bookings desk is at http://localhost:3000/admin.
 
-Сторінку `public/index.html` можна відкрити і без сервера: каталог покажеться з вбудованих даних.
+For production: `npm run build` and `npm start`.
 
-## Структура
+## Routes
 
-```
-public/                 фронтенд
-  index.html            головна сторінка
-  admin.html            адмінка для персоналу
-  404.html
-  css/styles.css        основні стилі (кольори й шрифти — змінні на початку файлу)
-  css/admin.css
-  js/app.js             пошук, фільтри, бронювання, керування бронюванням, зворотний дзвінок
-  js/admin.js
-  img/                  фото авто (WebP), іконки
-server/
-  index.js              HTTP-сервер і маршрути API
-  http.js               мінімальний роутер на node:http
-  store.js              сховище даних з атомарним записом у JSON
-  pricing.js            розрахунок ціни, кількості днів і наявності авто
-  validate.js           перевірка вхідних даних
-  data/*.json           класи авто, аеропорти, додаткові опції
-test/api.test.js        тести API на вбудованому node:test
-```
+| Page                  | Route                            | File                                          |
+| --------------------- | -------------------------------- | --------------------------------------------- |
+| Home                  | `/`                              | `app/(site)/page.tsx`                         |
+| Cars and prices       | `/cars`                          | `app/(site)/cars/page.tsx`                    |
+| Car class             | `/cars/[id]`                     | `app/(site)/cars/[id]/page.tsx`               |
+| Booking form          | `/book?car=…`                    | `app/(site)/book/page.tsx`                    |
+| Booking confirmed     | `/booking/confirmed?ref=…`       | `app/(site)/booking/confirmed/page.tsx`       |
+| Manage booking        | `/manage`                        | `app/(site)/manage/page.tsx`                  |
+| Help and contact      | `/help`                          | `app/(site)/help/page.tsx`                    |
+| Bookings desk (staff) | `/admin`                         | `app/admin/page.tsx` (own header)             |
+| 404                   | any unknown URL                  | `app/not-found.tsx`                           |
 
 ## API
 
-| Метод | Шлях | Що робить |
-|---|---|---|
-| GET | `/api/cars` | каталог; з `?locationId=LAX&pickupDate=…&returnDate=…` додає наявність і суму |
-| GET | `/api/locations`, `/api/extras` | аеропорти, додаткові опції |
-| POST | `/api/quote` | розрахунок ціни (сервер завжди рахує сам) |
-| POST | `/api/bookings` | створити бронювання |
-| GET | `/api/bookings/:ref?email=` | знайти своє бронювання (потрібні номер і email) |
-| POST | `/api/bookings/:ref/cancel` | скасувати бронювання |
-| POST | `/api/callbacks` | заявка на зворотний дзвінок |
-| GET/PATCH | `/api/admin/bookings`, `/api/admin/callbacks` | для адмінки, заголовок `Authorization: Bearer <ADMIN_TOKEN>` |
+Route handlers in `app/api/`. Prices are always calculated on the server; any price sent by the browser is ignored.
 
-## Безпека
+| Method    | Route                                         | What it does                                                        |
+| --------- | --------------------------------------------- | ------------------------------------------------------------------- |
+| GET       | `/api/cars`                                   | Catalogue; with `?locationId=&pickupDate=&returnDate=` adds availability and the trip total |
+| GET       | `/api/locations`, `/api/extras`               | Pick-up airports, extras                                            |
+| POST      | `/api/quote`                                  | Price breakdown for a trip                                          |
+| POST      | `/api/bookings`                               | Creates a booking and returns its reference (`TM-XXXXXX`)           |
+| GET       | `/api/bookings/[reference]?email=`            | A customer looks up their own booking                               |
+| POST      | `/api/bookings/[reference]/cancel`            | Free cancellation until 24 hours before pick-up                     |
+| POST      | `/api/callbacks`                              | “Call me back” request                                              |
+| GET/PATCH | `/api/admin/bookings`, `/api/admin/callbacks` | Bookings desk; needs `Authorization: Bearer <ADMIN_TOKEN>`          |
 
-Валідація всіх полів на сервері, ліміт запитів з однієї IP-адреси, honeypot-поле проти ботів, обмеження розміру запиту, заголовки безпеки (CSP, nosniff, заборона вбудовування у фрейми), порівняння токена за сталий час, захист від path traversal при віддачі файлів.
+## Structure
 
-## Стек
+- `app/globals.css` — design tokens (colours, type scale, gutter) and the shared classes: buttons, form fields, chips, panels, tables.
+- `app/(site)/layout.tsx` — wraps every customer page in `Header` + `Footer`. The bookings desk sits outside this group because it has its own header.
+- `components/` — `Header`, `Footer`, `TripSearch`, `Lineup` (the cars on the road in the hero), `CarSpecs`, `ClassCard`, `CallbackForm`, `Faq`; feature folders `home/`, `fleet/`, `booking/` and `admin/`.
+- `lib/data.ts` — car classes, airports, extras and FAQ.
+- `lib/pricing.ts` — rental days, price breakdown and availability. Used by the booking form for the live total and by the API for the final price, so the two always match.
+- `lib/validate.ts` — field validation shared by the forms and the API.
+- `lib/store.ts` — bookings and call-back requests in a JSON file (`storage/db.json`) with atomic writes. The route handlers only use its functions, so it can be swapped for SQLite or PostgreSQL without touching anything else.
+- `lib/server.ts` — API helpers: JSON responses, rate limiting, honeypot check, admin auth.
+- Font: Overpass via `next/font/google`. It is based on Highway Gothic, the lettering of US road signs.
 
-HTML, CSS, JavaScript, Node.js
+## Security
+
+Server-side validation of every field, rate limiting per IP, a honeypot field against bots, a 10 KB request limit, security headers (`next.config.ts`), constant-time admin token comparison. Customers can only see a booking when they know both its reference and the email it was made with.
+
+## Configuration
+
+| Variable      | Purpose                                                       |
+| ------------- | ------------------------------------------------------------- |
+| `ADMIN_TOKEN` | Sign-in token for `/admin`. The bookings desk is off without it. |
+| `DB_FILE`     | Where bookings are stored. Default: `storage/db.json`.        |
+| `TRUST_PROXY` | Set to `1` behind a reverse proxy so rate limiting sees real client IPs. |
+
+## Stack
+
+Next.js 15, React 19, TypeScript, CSS
